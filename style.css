@@ -1,0 +1,332 @@
+/* ============================================
+   Shikha Sultana — Portfolio Card
+   Modern, responsive design
+   ============================================ */
+
+:root {
+  --bg-1: #0f172a;
+  --bg-2: #1e293b;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent-1: #6366f1;
+  --accent-2: #ec4899;
+  --accent-3: #22d3ee;
+  --radius: 22px;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --font: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.35), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.30), transparent 45%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Animated top accent bar */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
+  background-size: 300% 100%;
+  animation: slide 6s linear infinite;
+}
+
+@keyframes slide {
+  to { background-position: 300% 0; }
+}
+
+/* ---------- Header ---------- */
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 40px 40px 26px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08), 0 12px 30px rgba(99, 102, 241, 0.5);
+  position: relative;
+}
+
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  animation: spin 18s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.header__info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(90deg, #fff, #c7d2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header__info .role {
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-3);
+  letter-spacing: 0.4px;
+}
+
+.header__info .location {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- Body ---------- */
+.card__body {
+  padding: 0 40px 40px;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.section__title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section__title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--card-border), transparent);
+}
+
+.summary {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* ---------- Skills ---------- */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: #e0e7ff;
+  background: rgba(99, 102, 241, 0.16);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.skill:hover {
+  transform: translateY(-3px);
+  background: rgba(99, 102, 241, 0.32);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+
+/* ---------- Projects ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.project {
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  border-color: rgba(236, 72, 153, 0.5);
+  background: rgba(236, 72, 153, 0.08);
+}
+
+.project__icon {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.project h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.project p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.project__tag {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: var(--accent-3);
+  background: rgba(34, 211, 238, 0.12);
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-main);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.contact a:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ---------- Footer ---------- */
+.card__footer {
+  padding: 18px 40px;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--card-border);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .card__header {
+    flex-direction: column;
+    text-align: center;
+    padding: 34px 24px 20px;
+  }
+  .header__info .location {
+    justify-content: center;
+  }
+  .card__body {
+    padding: 0 24px 30px;
+  }
+  .card__footer {
+    padding: 16px 24px;
+  }
+  .header__info h1 {
+    font-size: 1.6rem;
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+    font-size: 2.1rem;
+  }
+  .contact a {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .header__info h1 { font-size: 1.35rem; }
+  .skill { font-size: 0.78rem; padding: 7px 13px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
